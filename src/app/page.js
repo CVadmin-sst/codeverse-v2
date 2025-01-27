@@ -1,95 +1,130 @@
-import Image from "next/image";
+"use client";
+
 import styles from "./page.module.css";
+import Navbar from "./components/navbar/navbar.js";
+import Typed from 'typed.js';
+import { useEffect } from "react";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+import { getDatabase, set, ref, update, onValue } from "firebase/database";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    useEffect(() => {
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAMpHqIl0n2qPLkg9taA5w4UspN5YOtzQ8",
+            authDomain: "codeverse-612fe.firebaseapp.com",
+            databaseURL: "https://codeverse-612fe-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "codeverse-612fe",
+            storageBucket: "codeverse-612fe.appspot.com",
+            messagingSenderId: "991671604350",
+            appId: "1:991671604350:web:952c630d916324fcd8f42f",
+            measurementId: "G-5KFL98MYTL"
+        };
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                const userRef = ref(database, 'users/' + uid + '/username');
+                onValue(userRef, (snapshot) => {
+                    const data = snapshot.val();
+                    var text = new Typed(".typed", {
+                        strings: ["Welcome back, <span>" + data + "</span>"],
+                        typeSpeed: 50
+                    })
+                })
+                button.innerText = "Account";
+                button.href = "user/account/account.html";
+                console.log(uid);
+            } else {
+                var text = new Typed(".typed", {
+                    strings: ["Welcome to the <span>CodeVerse</span>"],
+                    typeSpeed: 80
+                })
+            }
+        })
+    }, [])
+
+    return (
+        <div>
+            <Navbar />
+
+            <div className={styles.welcome}>
+                <h1><span className="typed"></span></h1>
+                <p>This is where your coding journey begins...</p>
+            </div>
+
+            <div className={styles["main-content"]}>
+                <div className={styles.courses}>
+                    <h2 className={styles.title}>Our Courses</h2>
+                    <div className={styles["courses-card-container"]}>
+                        <div className={styles["courses-card"]}>
+                            <i className={`bx bxl-python ${styles['python']}`}></i>
+                            <div>
+                                <h4 className={styles["card-title"]}>Intro to Python</h4>
+                                <p className="card-desc">A beginner's guide to python. This will help you to get a good grasp of python</p>
+                            </div>
+                        </div>
+
+                        <div className={styles["courses-card"]}>
+                            <i className={`bx bxl-java ${styles['java']}`}></i>
+                            <div>
+                                <h4 className={styles["card-title"]}>Intro to Java</h4>
+                                <p className={styles["card-desc"]}>A beginner friendly introduction to java. This will help you get started with coding in java</p>
+                            </div>
+                        </div>
+
+                        <div className={styles["courses-card"]}>
+                            <i className={`bx bxl-c-plus-plus ${styles['c-plus-plus']}`}></i>
+                            <div>
+                                <h4 className={styles["card-title"]}>Intro to C++</h4>
+                                <p className={styles["card-desc"]}>A beginner level course that teaches C++. This will help you to understand the basics of C++</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.features}>
+                    <h2 className={styles.title}>Our Features</h2>
+                    <div className={styles["features-card-container"]}>
+                        <div className={styles["features-card"]}>
+                            <i className='bx bx-chalkboard'></i>
+                            <h4 className={styles["card-title"]}>Lessons</h4>
+                            <p className={styles["card-desc"]}>Our beginner friendly and easy to follow along lessons are bound to help you start on your journey to coding!</p>
+                        </div>
+
+                        <div className={styles["features-card"]}>
+                            <i className='bx bx-book-open'></i>
+                            <h4 className={styles["card-title"]}>Resources</h4>
+                            <p className={styles["card-desc"]}>If you need other resources alongside our lessons, our resources page will definitely have a few handy links!</p>
+                        </div>
+
+                        <div className={styles["features-card"]}>
+                            <i className='bx bx-edit'></i>
+                            <h4 className={styles["card-title"]}>Practise</h4>
+                            <p className={styles["card-desc"]}>Learning coding definitely requires practise in order to get better. Be sure to check out our practises page!</p>
+                        </div>
+
+                        <div className={styles["features-card"]}>
+                            <i className='bx bx-help-circle'></i>
+                            <h4 className={styles["card-title"]}>Helpdesk</h4>
+                            <p className={styles["card-desc"]}>If you ever need help with anything you don't understand, don't hesitate to check out our helpdesk!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }

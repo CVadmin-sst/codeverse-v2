@@ -89,7 +89,7 @@
     transform: translateY(-5px);
 }
 
-.sidebar-link a{
+.working-link{
     text-decoration: none;
     color: var(--text);
     font-size: 18px;

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import styles from './navbar.module.css';
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -13,6 +13,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const Navbar = () => {
+
+    const [side, setSide] = useState(false);
 
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -59,16 +61,15 @@ const Navbar = () => {
             }
         })
 
-        const sidebar = document.querySelector(".sidebar");
         const showSidebar = document.querySelector(".bx-menu");
         const hideSidebar = document.querySelector(".bx-x");
 
         showSidebar.addEventListener('click', function (){
-            sidebar.style.display = "block";
+            setSide(true);
         })
 
         hideSidebar.addEventListener('click', function (){
-            sidebar.style.display = "none";
+            setSide(false);
         })
 
     }, []);
@@ -76,13 +77,13 @@ const Navbar = () => {
     return (
         <div className={styles.navigation}>
             <nav className={styles.nav}>
-                <span className={styles["menu-button"]}><i className={`bx bx-menu ${styles["bx-menu"]}`} ></i></span>
+                <span className={styles["menu-button"]}><i className={`bx bx-menu ${styles["bx-menu"]}`}></i></span>
                 <div className={`${styles["logo-section"]} ${styles.hide}`}>
                     <Link href="/" className={styles.logo}>CodeVerse</Link>
                 </div>
                 
-                <ul className={styles.sidebar}>
-                    <i className='bx bx-x'></i>
+                <ul className={styles.sidebar} style={{display: side ? 'flex' : 'none'}}>
+                    <i className={`bx bx-x ${styles["bx-x"]}`}></i>
                     <li className={styles["sidebar-link"]}><Link href="/" className={styles["working-link"]}>Home</Link></li>
                     <li className={styles["sidebar-link"]}><Link href="/resources/resources" className={styles["working-link"]}>Resources</Link></li>
                     <li className={styles["sidebar-link"]}><Link href="/lessons/lessons" className={styles["working-link"]}>Lessons</Link></li>

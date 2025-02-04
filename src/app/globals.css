@@ -31,9 +31,11 @@ html::-webkit-scrollbar {
 html{
     -ms-overflow-style: none;  
     scrollbar-width: none;  
+    height: 100%;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
     background-color: var(--background);
+    height: 100%;
 }

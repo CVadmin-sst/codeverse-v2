@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import Navbar from "./components/navbar/navbar.js";
 import Typed from 'typed.js';
 import { useEffect } from "react";
 
@@ -42,16 +41,14 @@ export default function Home() {
                     const data = snapshot.val();
                     var text = new Typed(".typed", {
                         strings: ["Welcome back, <span>" + data + "</span>"],
-                        typeSpeed: 50
+                        typeSpeed: 40
                     })
                 })
-                button.innerText = "Account";
-                button.href = "user/account/account.html";
                 console.log(uid);
             } else {
                 var text = new Typed(".typed", {
                     strings: ["Welcome to the <span>CodeVerse</span>"],
-                    typeSpeed: 80
+                    typeSpeed: 64
                 })
             }
         })
@@ -59,8 +56,6 @@ export default function Home() {
 
     return (
         <div>
-            <Navbar />
-
             <div className={styles.welcome}>
                 <h1><span className="typed"></span></h1>
                 <p>This is where your coding journey begins...</p>

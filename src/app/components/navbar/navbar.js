@@ -1,6 +1,6 @@
 "use client";
 
-import Link from 'next/link';
+import Link from 'next/link';import { usePathname } from 'next/navigation';
 import styles from './navbar.module.css';
 import { useState, useEffect } from "react";
 
@@ -15,6 +15,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Navbar = () => {
 
     const [side, setSide] = useState(false);
+    const [text, setText] = useState("Log in");
+    const [link, setLink] = useState("/login");
 
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -32,7 +34,7 @@ const Navbar = () => {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     // const analytics = getAnalytics(app);
-    const database = getDatabase(app);
+    // const database = getDatabase(app);
     const auth = getAuth();
 
     useEffect(() => {
@@ -55,35 +57,35 @@ const Navbar = () => {
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                button.innerText = "Account";
-                button.href = "user/account/account.html";
+                setText("Account");
+                setLink("/account");
                 console.log(user);
             }
         })
-
-        const showSidebar = document.querySelector(".bx-menu");
-        const hideSidebar = document.querySelector(".bx-x");
-
-        showSidebar.addEventListener('click', function (){
-            setSide(true);
-        })
-
-        hideSidebar.addEventListener('click', function (){
-            setSide(false);
-        })
-
     }, []);
-    
+
+    const show = () => {
+        setSide(true);
+    }
+
+    const hide = () => {
+        setSide(false);
+    }
+
+    const pathname = usePathname();
+    const hideNavbar = ["/login", "/signup"];
+    if (hideNavbar.includes(pathname)){ return null; }
+
     return (
         <div className={styles.navigation}>
             <nav className={styles.nav}>
-                <span className={styles["menu-button"]}><i className={`bx bx-menu ${styles["bx-menu"]}`}></i></span>
+                <span className={styles["menu-button"]}><i onClick={show} className={`bx bx-menu ${styles["bx-menu"]}`}></i></span>
                 <div className={`${styles["logo-section"]} ${styles.hide}`}>
                     <Link href="/" className={styles.logo}>CodeVerse</Link>
                 </div>
                 
                 <ul className={styles.sidebar} style={{display: side ? 'flex' : 'none'}}>
-                    <i className={`bx bx-x ${styles["bx-x"]}`}></i>
+                    <i onClick={hide} className={`bx bx-x ${styles["bx-x"]}`}></i>
                     <li className={styles["sidebar-link"]}><Link href="/" className={styles["working-link"]}>Home</Link></li>
                     <li className={styles["sidebar-link"]}><Link href="/resources/resources" className={styles["working-link"]}>Resources</Link></li>
                     <li className={styles["sidebar-link"]}><Link href="/lessons/lessons" className={styles["working-link"]}>Lessons</Link></li>
@@ -98,7 +100,7 @@ const Navbar = () => {
                 </ul>
 
                 <div className={styles["account-section"]}>
-                    <Link href="/user/login/login" className={styles.btn}>Log in</Link>
+                    <Link href={link} className={styles.btn}>{text}</Link>
                 </div>
             </nav>
         </div>

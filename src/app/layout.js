@@ -1,4 +1,5 @@
 import "./globals.css";
+import Navbar from "./components/navbar/navbar";
 
 export const metadata = {
   title: "CodeVerse",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       </head>
       <body>
+        <Navbar />
         {children}
       </body>
     </html>

@@ -109,7 +109,7 @@ export default function Login() {
                     </div>
 
                     <input type="submit" id="login" value="Log In" className={styles.login}></input>
-                    <Link href="../signup/signup.html" className={styles.link}>Don't have an account? Sign up here</Link>
+                    <Link href="/signup" className={styles.link}>Don't have an account? Sign up here</Link>
                 </div>
             </div>
         </div>

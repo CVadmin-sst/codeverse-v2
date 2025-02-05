@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
 import { getDatabase, set, ref, update, onValue } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -28,7 +27,6 @@ export default function Account() {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    // const analytics = getAnalytics(app);
     const database = getDatabase(app);
     const auth = getAuth();
 

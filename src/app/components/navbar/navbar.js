@@ -39,7 +39,6 @@ const Navbar = () => {
 
     useEffect(() => {
         let links = document.querySelectorAll(".working-link");
-        let button = document.querySelector(".btn");
 
         function secureLinks(link){
             link.addEventListener('click', function(event){
@@ -86,17 +85,17 @@ const Navbar = () => {
                 
                 <ul className={styles.sidebar} style={{display: side ? 'flex' : 'none'}}>
                     <i onClick={hide} className={`bx bx-x ${styles["bx-x"]}`}></i>
-                    <li className={styles["sidebar-link"]}><Link href="/" className={styles["working-link"]}>Home</Link></li>
-                    <li className={styles["sidebar-link"]}><Link href="/resources/resources" className={styles["working-link"]}>Resources</Link></li>
-                    <li className={styles["sidebar-link"]}><Link href="/lessons/lessons" className={styles["working-link"]}>Lessons</Link></li>
-                    <li className={styles["sidebar-link"]}><Link href="/helpdesk/helpdesk" className={styles["working-link"]}>Helpdesk</Link></li>
+                    <li className={styles["sidebar-link"]}><Link href="/" className={`working-link ${styles["working-link"]}`}>Home</Link></li>
+                    <li className={styles["sidebar-link"]}><Link href="/resources" className={`working-link ${styles["working-link"]}`}>Resources</Link></li>
+                    <li className={styles["sidebar-link"]}><Link href="/lessons" className={`working-link ${styles["working-link"]}`}>Lessons</Link></li>
+                    <li className={styles["sidebar-link"]}><Link href="/helpdesk" className={`working-link ${styles["working-link"]}`}>Helpdesk</Link></li>
                 </ul>
 
                 <ul className={styles["nav-links"]}>
-                    <li className={`${styles.link} ${styles.hide}`}><Link href="/" className={styles["working-link"]}>Home</Link></li>
-                    <li className={`${styles.link} ${styles.hide}`}><Link href="/resources/resources" className={styles["working-link"]}>Resources</Link></li>
-                    <li className={`${styles.link} ${styles.hide}`}><Link href="/lessons/lessons" className={styles["working-link"]}>Lessons</Link></li>
-                    <li className={`${styles.link} ${styles.hide}`}><Link href="/helpdesk/helpdesk" className={styles["working-link"]}>Helpdesk</Link></li>
+                    <li className={`${styles.link} ${styles.hide}`}><Link href="/" className={`working-link ${styles["working-link"]}`}>Home</Link></li>
+                    <li className={`${styles.link} ${styles.hide}`}><Link href="/resources" className={`working-link ${styles["working-link"]}`}>Resources</Link></li>
+                    <li className={`${styles.link} ${styles.hide}`}><Link href="/lessons" className={`working-link ${styles["working-link"]}`}>Lessons</Link></li>
+                    <li className={`${styles.link} ${styles.hide}`}><Link href="/helpdesk" className={`working-link ${styles["working-link"]}`}>Helpdesk</Link></li>
                 </ul>
 
                 <div className={styles["account-section"]}>

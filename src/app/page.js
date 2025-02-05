@@ -41,14 +41,14 @@ export default function Home() {
                     const data = snapshot.val();
                     var text = new Typed(".typed", {
                         strings: ["Welcome back, <span>" + data + "</span>"],
-                        typeSpeed: 40
+                        typeSpeed: 45
                     })
                 })
                 console.log(uid);
             } else {
                 var text = new Typed(".typed", {
                     strings: ["Welcome to the <span>CodeVerse</span>"],
-                    typeSpeed: 64
+                    typeSpeed: 60
                 })
             }
         })

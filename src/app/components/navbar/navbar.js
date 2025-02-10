@@ -68,7 +68,7 @@ const Navbar = () => {
     }
 
     const pathname = usePathname();
-    const hideNavbar = ["/login", "/signup"];
+    const hideNavbar = ["/login", "/signup", "/reply"];
     if (hideNavbar.includes(pathname)){ return null; }
 
     return (

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, set, ref, update } from "firebase/database";
+import { getDatabase, set, ref } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

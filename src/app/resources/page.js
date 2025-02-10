@@ -3,7 +3,7 @@ import styles from './page.module.css';
 
 export default function Resources() {
     return(
-        <div>
+        <div className={styles.page}>
             <div className={styles.welcome}>
                 <h1>Resources</h1>
                 <p>Here are some resources that you can refer to when needed</p>

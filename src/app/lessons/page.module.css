@@ -1,0 +1,153 @@
+.page {
+    height: 100%;
+    background-color: var(--background-darker);
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    padding: 30px 50px;
+    background-color: var(--background-darker);
+}
+
+.title{
+    font-size: 2.5rem;
+    color: var(--contrasting);
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* OUR COURSES SECTION */
+
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card{
+    padding: 30px;
+    background-color: var(--background);
+    border-radius: 10px;
+    max-height: 500px;
+    border: 1.5px solid transparent;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    transition: all 0.3s ease;
+}
+
+.card > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.card:hover, .card:active{
+    border-color: var(--text);
+}
+
+.card > div > i{
+    font-size: 9rem;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-logo-1{
+    background-color: var(--light-green);
+}
+
+.card-logo-2{
+    background-color: var(--light-orange);
+}
+
+.card-logo-3{
+    background-color: var(--light-blue);
+}
+
+.card-title{
+    font-size: 20px;
+    margin: 5px 0;
+    color: var(--text);
+}
+
+.card-desc{
+    color: var(--text);
+}
+
+.card-btn {
+    text-decoration: none;
+    color: var(--background);
+    font-size: 1.1rem;
+    background-color: var(--contrasting);
+    padding: 5px 20px;
+    border: 1.5px solid var(--contrasting);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.card-btn:hover, .card-btn:active {
+    color: var(--contrasting);
+    background-color: transparent;
+}
+
+.lesson-link{
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    text-align: center;
+    margin: 2.5px;
+    transition: all 0.3s ease;
+}
+
+.lesson-link.card-desc:hover, .lesson-link.card-desc:active{
+    text-decoration: underline;
+    opacity: 0.6;
+}
+
+.python-lessons {
+    display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1050px){
+    .card-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .hide{
+        display: none;
+    }
+
+    .menu-button{
+        display: block;
+    }
+}
+
+@media (max-width: 720px){
+    .card-container{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 500px){ 
+    .sidebar{
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px){
+    .main-content{
+        padding: 60px 20px;
+    }
+}
